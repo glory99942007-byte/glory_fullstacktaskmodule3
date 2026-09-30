@@ -1,0 +1,1154 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Admission Portal</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:#f1f5f9;
+    color:#172033;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.wrapper{
+    width:94%;
+    max-width:1200px;
+    margin:35px auto;
+    background:#ffffff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 45px rgba(15,23,42,.12);
+    display:grid;
+    grid-template-columns:300px 1fr;
+    min-height:800px;
+}
+
+
+/* =========================
+   LEFT PANEL
+========================= */
+
+.left-panel{
+    background:#0f172a;
+    color:white;
+    padding:40px 30px;
+    position:relative;
+}
+
+.brand{
+    font-size:25px;
+    font-weight:700;
+    margin-bottom:45px;
+}
+
+.brand span{
+    color:#60a5fa;
+}
+
+.left-panel h2{
+    font-size:30px;
+    line-height:1.25;
+    margin-bottom:15px;
+}
+
+.left-panel .intro{
+    color:#cbd5e1;
+    font-size:14px;
+    line-height:1.7;
+    margin-bottom:45px;
+}
+
+
+/* STEPS */
+
+.steps{
+    position:relative;
+}
+
+.steps::before{
+    content:"";
+    position:absolute;
+    left:18px;
+    top:10px;
+    bottom:10px;
+    width:2px;
+    background:#334155;
+}
+
+.step{
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:30px;
+    color:#94a3b8;
+}
+
+.step-number{
+    width:37px;
+    height:37px;
+    border-radius:50%;
+    background:#1e293b;
+    border:2px solid #475569;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+    font-weight:700;
+}
+
+.step.active{
+    color:white;
+}
+
+.step.active .step-number{
+    background:#2563eb;
+    border-color:#60a5fa;
+}
+
+.step-text strong{
+    display:block;
+    font-size:14px;
+    margin-bottom:3px;
+}
+
+.step-text small{
+    font-size:11px;
+}
+
+
+/* CONTACT */
+
+.support{
+    position:absolute;
+    bottom:30px;
+    left:30px;
+    right:30px;
+    border-top:1px solid #334155;
+    padding-top:20px;
+    color:#94a3b8;
+    font-size:12px;
+    line-height:1.7;
+}
+
+
+/* =========================
+   RIGHT PANEL
+========================= */
+
+.right-panel{
+    padding:38px 45px;
+}
+
+.top-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e2e8f0;
+    padding-bottom:22px;
+    margin-bottom:30px;
+}
+
+.top-header h1{
+    font-size:25px;
+}
+
+.application-id{
+    font-size:12px;
+    color:#64748b;
+    background:#f8fafc;
+    padding:8px 12px;
+    border-radius:6px;
+}
+
+
+/* =========================
+   FORM SECTION
+========================= */
+
+.form-section{
+    margin-bottom:32px;
+}
+
+.section-heading{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.section-number{
+    width:30px;
+    height:30px;
+    border-radius:7px;
+    background:#eff6ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:13px;
+}
+
+.section-heading h2{
+    font-size:17px;
+}
+
+
+/* FORM GRID */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.full{
+    grid-column:1 / 3;
+}
+
+label{
+    font-size:12px;
+    font-weight:700;
+    color:#475569;
+    margin-bottom:7px;
+}
+
+.required{
+    color:#dc2626;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #d5dce6;
+    border-radius:8px;
+    padding:12px 13px;
+    font-size:14px;
+    background:white;
+    color:#172033;
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 3px rgba(37,99,235,.08);
+}
+
+textarea{
+    height:90px;
+    resize:none;
+}
+
+
+/* RADIO */
+
+.radio-group{
+    display:flex;
+    gap:25px;
+    padding:11px 0;
+}
+
+.radio-group label{
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin:0;
+}
+
+.radio-group input{
+    width:auto;
+}
+
+
+/* =========================
+   DOCUMENT UPLOAD
+========================= */
+
+.upload-box{
+    border:2px dashed #cbd5e1;
+    border-radius:10px;
+    padding:20px;
+    text-align:center;
+    background:#f8fafc;
+    cursor:pointer;
+}
+
+.upload-box:hover{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+.upload-box input{
+    display:none;
+}
+
+.upload-icon{
+    font-size:27px;
+    margin-bottom:8px;
+}
+
+.upload-box strong{
+    display:block;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.upload-box span{
+    font-size:11px;
+    color:#64748b;
+}
+
+
+/* =========================
+   DECLARATION
+========================= */
+
+.declaration{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    border-radius:10px;
+    padding:17px;
+    margin-top:10px;
+}
+
+.declaration label{
+    display:flex;
+    gap:10px;
+    line-height:1.6;
+    font-weight:500;
+    color:#475569;
+}
+
+.declaration input{
+    width:auto;
+    margin-top:4px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.form-footer{
+    border-top:1px solid #e2e8f0;
+    padding-top:25px;
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.form-footer p{
+    font-size:11px;
+    color:#64748b;
+}
+
+.buttons{
+    display:flex;
+    gap:10px;
+}
+
+button{
+    border:none;
+    border-radius:8px;
+    padding:12px 22px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-reset{
+    background:#e2e8f0;
+    color:#334155;
+}
+
+.btn-submit{
+    background:#2563eb;
+    color:white;
+    box-shadow:0 5px 12px rgba(37,99,235,.2);
+}
+
+.btn-submit:hover{
+    background:#1d4ed8;
+}
+
+
+/* =========================
+   SUCCESS SCREEN
+========================= */
+
+.success-screen{
+    display:none;
+    text-align:center;
+    padding:80px 20px;
+}
+
+.success-icon{
+    width:75px;
+    height:75px;
+    background:#dcfce7;
+    color:#16a34a;
+    border-radius:50%;
+    margin:0 auto 20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:35px;
+}
+
+.success-screen h2{
+    margin-bottom:10px;
+}
+
+.success-screen p{
+    color:#64748b;
+    line-height:1.7;
+}
+
+.application-number{
+    display:inline-block;
+    margin:25px 0;
+    background:#eff6ff;
+    color:#1d4ed8;
+    padding:13px 20px;
+    border-radius:8px;
+    font-weight:700;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    .wrapper{
+        grid-template-columns:1fr;
+    }
+
+    .left-panel{
+        padding:30px;
+    }
+
+    .left-panel h2{
+        font-size:24px;
+    }
+
+    .steps{
+        display:none;
+    }
+
+    .support{
+        position:static;
+        margin-top:25px;
+    }
+
+    .right-panel{
+        padding:30px 22px;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:1;
+    }
+
+    .top-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .form-footer{
+        flex-direction:column;
+        align-items:stretch;
+        gap:20px;
+    }
+
+    .buttons{
+        width:100%;
+    }
+
+    .buttons button{
+        flex:1;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<div class="wrapper">
+
+
+<!-- =====================================================
+     LEFT SIDE
+===================================================== -->
+
+<div class="left-panel">
+
+    <div class="brand">
+        Edu<span>Portal</span>
+    </div>
+
+    <h2>
+        Student<br>
+        Admission
+    </h2>
+
+    <p class="intro">
+        Complete your application with accurate information.
+        All required fields must be filled before submission.
+    </p>
+
+
+    <div class="steps">
+
+        <div class="step active">
+
+            <div class="step-number">
+                1
+            </div>
+
+            <div class="step-text">
+                <strong>Personal Details</strong>
+                <small>Basic information</small>
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div class="step-text">
+                <strong>Academic Details</strong>
+                <small>Education information</small>
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                3
+            </div>
+
+            <div class="step-text">
+                <strong>Contact Details</strong>
+                <small>Address and guardian</small>
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                4
+            </div>
+
+            <div class="step-text">
+                <strong>Documents</strong>
+                <small>Required documents</small>
+            </div>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">
+                5
+            </div>
+
+            <div class="step-text">
+                <strong>Confirmation</strong>
+                <small>Submit application</small>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="support">
+
+        <strong>Need assistance?</strong><br>
+
+        Contact the admission office for help
+        with your application.
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     RIGHT SIDE
+===================================================== -->
+
+<div class="right-panel">
+
+
+<div id="formArea">
+
+
+    <div class="top-header">
+
+        <div>
+
+            <h1>Application Form</h1>
+
+            <p style="color:#64748b;font-size:12px;margin-top:5px;">
+                Academic Year 2026–2027
+            </p>
+
+        </div>
+
+        <div class="application-id">
+            New Application
+        </div>
+
+    </div>
+
+
+<form id="studentForm">
+
+
+<!-- =====================================================
+     PERSONAL DETAILS
+===================================================== -->
+
+<div class="form-section">
+
+    <div class="section-heading">
+
+        <div class="section-number">
+            01
+        </div>
+
+        <h2>Personal Information</h2>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                First Name <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="firstName"
+                placeholder="Enter first name"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Last Name <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="lastName"
+                placeholder="Enter last name"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Date of Birth <span class="required">*</span>
+            </label>
+
+            <input
+                type="date"
+                id="dob"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Gender <span class="required">*</span>
+            </label>
+
+            <div class="radio-group">
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Male"
+                        required>
+                    Male
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Female">
+                    Female
+                </label>
+
+                <label>
+                    <input
+                        type="radio"
+                        name="gender"
+                        value="Other">
+                    Other
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email Address <span class="required">*</span>
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="student@example.com"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Mobile Number <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                placeholder="10-digit mobile number"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                required>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ACADEMIC DETAILS
+===================================================== -->
+
+<div class="form-section">
+
+    <div class="section-heading">
+
+        <div class="section-number">
+            02
+        </div>
+
+        <h2>Academic Information</h2>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                Applying For <span class="required">*</span>
+            </label>
+
+            <select id="course" required>
+
+                <option value="">
+                    Select programme
+                </option>
+
+                <option>
+                    B.Sc Computer Science
+                </option>
+
+                <option>
+                    BCA
+                </option>
+
+                <option>
+                    B.E Computer Science
+                </option>
+
+                <option>
+                    B.Tech Information Technology
+                </option>
+
+                <option>
+                    B.Com
+                </option>
+
+                <option>
+                    BBA
+                </option>
+
+                <option>
+                    B.Sc Mathematics
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Previous Qualification <span class="required">*</span>
+            </label>
+
+            <select id="qualification" required>
+
+                <option value="">
+                    Select qualification
+                </option>
+
+                <option>10th</option>
+                <option>12th</option>
+                <option>Diploma</option>
+                <option>Undergraduate</option>
+                <option>Postgraduate</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Institution Name
+            </label>
+
+            <input
+                type="text"
+                id="institution"
+                placeholder="Previous school / college">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Passing Year
+            </label>
+
+            <input
+                type="number"
+                id="passingYear"
+                placeholder="Example: 2026"
+                min="2000"
+                max="2035">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Percentage / CGPA
+            </label>
+
+            <input
+                type="text"
+                id="score"
+                placeholder="Example: 85% or 8.5 CGPA">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Study Mode
+            </label>
+
+            <select id="studyMode">
+
+                <option>Regular</option>
+                <option>Online</option>
+                <option>Hybrid</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONTACT DETAILS
+===================================================== -->
+
+<div class="form-section">
+
+    <div class="section-heading">
+
+        <div class="section-number">
+            03
+        </div>
+
+        <h2>Contact & Guardian Information</h2>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                Parent / Guardian Name
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="guardian"
+                placeholder="Full name"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Guardian Mobile
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                id="guardianPhone"
+                placeholder="10-digit mobile number"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                required>
+
+        </div>
+
+
+        <div class="form-group full">
+
+            <label>
+                Permanent Address
+                <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="address"
+                placeholder="Enter complete address"
+                required></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                City <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="city"
+                placeholder="City"
+                required>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                State <span class="required">*</span>
+            </label>
+
+            <select id="state" required>
+
+                <option value="">
+                    Select state
+                </option>
+
+                <option>Tamil Nadu</option>
+                <option>Kerala</option>
+                <option>Karnataka</option>
+                <option>Andhra Pradesh</option>
+                <option>Telangana</option>
+                <option>Maharashtra</option>
+                <option>Other</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                PIN Code <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                id="pincode"
+                placeholder="6-digit PIN"
+                maxlength="6"
+                pattern="[0-9]{6}"
+                required>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     DOCUMENTS
+===================================================== -->
+
+<div class="form-section">
+
+    <div class="section-heading">
+
+        <div class="section-number">
+            04
+        </div>
+
+        <h2>Document Upload</h2>
+
+    </div>
+
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                Student Photograph
+            </label>
+
+            <label class="upload-box">
+
+                <div class="upload-icon">
+                    📷
+                </div>
+
+                <strong>
+                    Click to upload photo
+                </strong>
+
+                <span>
+                    JPG / PNG • Maximum 2 MB
+                </span>
+
+                <input
+                    type="file"
+                    id="photo"
+                    accept=".jpg,.jpeg,.png">
+
+            </label>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Academic Certificate
+            </label>
+
+            <label class="upload-box">
+
+                <div class="upload-icon">
+                    📄
+                </div>
+
+                <strong>
+                    Click to upload certificate
+                </strong>
+
+                <span>
+                    PDF / JPG / PNG
+                </span>
+```
